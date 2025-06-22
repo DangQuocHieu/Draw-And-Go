@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Car Wheel
+  - Car Body
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
     locked: 0
   - name: Line
     uniqueID: 143215679
+    locked: 0
+  - name: Car Body
+    uniqueID: 1579648489
+    locked: 0
+  - name: Wheel
+    uniqueID: 1715547713
     locked: 0
   m_RenderingLayers:
   - Default
