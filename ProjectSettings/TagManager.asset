@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Car Wheel
   - Car Body
-  - 
+  - Line
   - 
   - 
   - 
@@ -38,11 +38,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2455060365
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Line
     uniqueID: 143215679
+    locked: 0
+  - name: EndPoint
+    uniqueID: 3273032181
     locked: 0
   - name: Car Body
     uniqueID: 1579648489
