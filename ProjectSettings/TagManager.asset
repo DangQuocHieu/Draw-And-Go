@@ -14,7 +14,7 @@ TagManager:
   - Car Wheel
   - Car Body
   - Line
-  - 
+  - Powerup
   - 
   - 
   - 
@@ -49,6 +49,12 @@ TagManager:
     locked: 0
   - name: EndPoint
     uniqueID: 3273032181
+    locked: 0
+  - name: Powerup
+    uniqueID: 1632893739
+    locked: 0
+  - name: Platform
+    uniqueID: 656763391
     locked: 0
   - name: Car Body
     uniqueID: 1579648489

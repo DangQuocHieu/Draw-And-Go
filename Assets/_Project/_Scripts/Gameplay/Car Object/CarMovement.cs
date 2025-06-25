@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CarMovement : MonoBehaviour, IMessageHandle
+public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 {
     [SerializeField] private float _speed = 1500f;
     [SerializeField] private WheelJoint2D _backWheel;
@@ -10,7 +10,8 @@ public class CarMovement : MonoBehaviour, IMessageHandle
     [SerializeField] private CircleCollider2D _frontWheelCollider;
     [SerializeField] private bool _useEngine = true;
 
-    private BoxCollider2D _carCollider;
+    private Collider2D[] _carCollider;
+
 
     private Rigidbody2D _carRb;
 
@@ -19,8 +20,8 @@ public class CarMovement : MonoBehaviour, IMessageHandle
     void Awake()
     {
         _carRb = GetComponent<Rigidbody2D>();
-        _carCollider = GetComponent<BoxCollider2D>();
-        Init();
+        _carCollider = GetComponents<Collider2D>();
+        OnIdle();
     }
 
     void OnEnable()
@@ -57,23 +58,36 @@ public class CarMovement : MonoBehaviour, IMessageHandle
                 break;
         }
     }
-
-    private void Init()
-    {
-        _carRb.bodyType = RigidbodyType2D.Static;
-        _carCollider.enabled = false;
-        _backWheelCollider.enabled = false;
-        _frontWheelCollider.enabled = false;
-
-    }
-
-    private void OnStart()
+    public void OnStart()
     {
         _carRb.bodyType = RigidbodyType2D.Dynamic;
         _canMove = true;
-        _carCollider.enabled = true;
         _backWheelCollider.enabled = true;
         _frontWheelCollider.enabled = true;
+
+        foreach (var colldier in _carCollider)
+        {
+            colldier.enabled = true;
+        }
+    }
+
+    public void OnIdle()
+    {
+        _carRb.bodyType = RigidbodyType2D.Static;
+        _backWheelCollider.enabled = false;
+        _frontWheelCollider.enabled = false;
+
+        foreach (var colldier in _carCollider)
+        {
+            colldier.enabled = false;
+        }
+    }
+
+    public void OnGravityFlip()
+    {
+        if (!_useEngine) return;
+        _speed = -_speed;
+        transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
     }
 
 }
