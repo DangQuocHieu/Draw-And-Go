@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _eraseButton;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private TextMeshProUGUI _totalLengthText;
 
     void OnEnable()
     {
@@ -20,7 +22,7 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
 
     void Update()
     {
-      
+        _totalLengthText.text = DrawManager.Instance.TotalLength.ToString();
     }
     private void AddButtonListener()
     {

@@ -13,8 +13,8 @@ public class GravityFlip : MonoBehaviour, IPowerup
 
     public void ApplyEffect(GameObject target)
     {
-        Physics2D.gravity = new Vector2(Physics2D.gravity.x, Physics2D.gravity.y * -1);
-
+        Debug.Log("APPLY GRAVITY EFECT");
+        Physics2D.gravity = new Vector2(Physics2D.gravity.x, Physics2D.gravity.y * -1); 
         target.GetComponent<CarMovement>().OnGravityFlip();
     }
 

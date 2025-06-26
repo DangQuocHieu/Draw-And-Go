@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DrawManager : Singleton<DrawManager>
 {
@@ -10,6 +11,9 @@ public class DrawManager : Singleton<DrawManager>
     [SerializeField] private float _drawResolution = 0.1f;
 
     private Stack<Line> _lineStack = new Stack<Line>();
+    private float _totalLength = 0f;
+    public float TotalLength => _totalLength;
+
     void Update()
     {
         HandleDrawLine();
@@ -49,7 +53,14 @@ public class DrawManager : Singleton<DrawManager>
             return;
         }
         Line line = _lineStack.Pop();
+        _totalLength -= line.LineLength;
+        _totalLength = Mathf.Max(0f, _totalLength);
         Destroy(line.gameObject);
+    }
+
+    public void UpdateTotalLength(float lengthToAdd)
+    {
+        _totalLength += lengthToAdd;
     }
 
 }

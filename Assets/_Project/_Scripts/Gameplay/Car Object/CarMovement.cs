@@ -1,9 +1,9 @@
-using System.Collections;
+    using System.Collections;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 {
-    [SerializeField] private float _speed = 1500f;
+    [SerializeField] public float _speed = 1500f;
     [SerializeField] private WheelJoint2D _backWheel;
     [SerializeField] private CircleCollider2D _backWheelCollider;
     [SerializeField] private WheelJoint2D _frontWheel;
@@ -17,11 +17,14 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 
     private bool _canMove = false;
 
+
+
     void Awake()
     {
         _carRb = GetComponent<Rigidbody2D>();
         _carCollider = GetComponents<Collider2D>();
         OnIdle();
+        _carRb.centerOfMass = new Vector2(0, -0.5f);
     }
 
     void OnEnable()
@@ -37,6 +40,15 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     void FixedUpdate()
     {
         HandleMovement();
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _speed = -_speed;
+        }
     }
     private void HandleMovement()
     {
@@ -85,9 +97,26 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 
     public void OnGravityFlip()
     {
-        if (!_useEngine) return;
         _speed = -_speed;
         transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+    }
+
+    public void TurnOnEngine()
+    {
+        _useEngine = true;
+    }
+
+    public void ChangeCarSpeed(float speed)
+    {
+        _speed = speed;
+    }
+
+    public void OnMissileBoost(PhysicsMaterial2D boostMaterial, float speed)
+    {
+        _backWheelCollider.sharedMaterial = boostMaterial;
+        _frontWheelCollider.sharedMaterial = boostMaterial;
+        TurnOnEngine();
+        ChangeCarSpeed(speed);
     }
 
 }

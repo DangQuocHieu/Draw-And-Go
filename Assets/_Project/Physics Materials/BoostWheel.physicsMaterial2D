@@ -6,9 +6,9 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wheel
+  m_Name: BoostWheel
   serializedVersion: 2
-  friction: 0.5
+  friction: 12
   bounciness: 0.2
   m_FrictionCombine: 2
   m_BounceCombine: 4

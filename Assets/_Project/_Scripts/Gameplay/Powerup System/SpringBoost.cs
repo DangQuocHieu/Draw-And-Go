@@ -9,7 +9,6 @@ public class SpringBoost : MonoBehaviour, IPowerup
     private Animator _springAnim;
     [SerializeField] private float _releaseTime = 2f;
 
-    [SerializeField] private float _yOffset;
     private bool _canReleased = true;
     void Awake()
     {
