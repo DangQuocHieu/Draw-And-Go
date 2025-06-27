@@ -9,10 +9,15 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
     [SerializeField] private Button _eraseButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private TextMeshProUGUI _totalLengthText;
+    [SerializeField] private Slider _inkSlider;
 
+    void Start()
+    {
+        SetUpInkSlider();
+    }
     void OnEnable()
     {
-        AddButtonListener();        
+        AddButtonListener();
     }
 
     void OnDisable()
@@ -22,7 +27,7 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
 
     void Update()
     {
-        _totalLengthText.text = DrawManager.Instance.TotalLength.ToString();
+        UpdateInkSlider();
     }
     private void AddButtonListener()
     {
@@ -52,5 +57,16 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
         MessageManager.SendMessage(new Message(GameMessageType.OnCarStarted));
         _startButton.gameObject.SetActive(false);
         _eraseButton.gameObject.SetActive(false);
+    }
+
+    private void SetUpInkSlider()
+    {
+        _inkSlider.minValue = 0;
+        _inkSlider.maxValue = DrawManager.Instance.MaxLength;
+    }
+
+    private void UpdateInkSlider()
+    {
+        _inkSlider.value = DrawManager.Instance.Remaining;
     }
 }

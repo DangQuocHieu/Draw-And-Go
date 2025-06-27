@@ -11,9 +11,18 @@ public class DrawManager : Singleton<DrawManager>
     [SerializeField] private float _drawResolution = 0.1f;
 
     private Stack<Line> _lineStack = new Stack<Line>();
-    private float _totalLength = 0f;
-    public float TotalLength => _totalLength;
 
+    [SerializeField] private float _maxLength;
+    public float MaxLength => _maxLength;
+    private float _remaining;
+    public float Remaining => _remaining;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _remaining = _maxLength;
+    }
     void Update()
     {
         HandleDrawLine();
@@ -53,14 +62,19 @@ public class DrawManager : Singleton<DrawManager>
             return;
         }
         Line line = _lineStack.Pop();
-        _totalLength -= line.LineLength;
-        _totalLength = Mathf.Max(0f, _totalLength);
+        _remaining += line.LineLength;
+        _remaining = Mathf.Min(_remaining, _maxLength);
         Destroy(line.gameObject);
     }
 
     public void UpdateTotalLength(float lengthToAdd)
     {
-        _totalLength += lengthToAdd;
+        _remaining -= lengthToAdd;
+    }
+
+    public float CalculateDrawRate()
+    {
+        return _remaining / _maxLength;
     }
 
 }
