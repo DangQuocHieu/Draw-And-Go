@@ -1,7 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelStat", menuName = "Scriptable Objects/LevelStat")]
-public class LevelStat : ScriptableObject
+[System.Serializable]
+public class LevelStat
 {
-    
+    public GameMode Mode;
+    public int LevelId;
+    public float MaxInk;
+    public bool UseEngine;
+
+    public GameObject levelPrefab;
 }
