@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : Singleton<ScoreManager>
 {
     [SerializeField] private RectTransform _starUI;
     [SerializeField] private RectTransform _starContainer;
@@ -42,15 +42,14 @@ public class ScoreManager : MonoBehaviour
             }
             else _starUIs[i].gameObject.SetActive(true);
         }
-        Debug.Log(_rate);
     }
 
     public int GetTotalScore()
     {
         int score = 0;
-        foreach (RectTransform ui in _starUIs)
+        for (int i = 0; i < _starRates.Length; i++)
         {
-            if (ui.gameObject.activeInHierarchy)
+            if (_rate >= _starRates[i])
             {
                 ++score;
             }

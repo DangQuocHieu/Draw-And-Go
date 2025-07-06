@@ -3,26 +3,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIDrawGameplayScreenHUD : MonoBehaviour
+public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
 {
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _eraseButton;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _homeButton;
     [SerializeField] private TextMeshProUGUI _totalLengthText;
     [SerializeField] private Slider _inkSlider;
 
-    void Start()
-    {
-        SetUpInkSlider();
-    }
+
     void OnEnable()
     {
         AddButtonListener();
+        MessageManager.AddSubscriber(GameMessageType.OnLevelSetUp, this);
     }
 
     void OnDisable()
     {
         RemoveButtonListener();
+        MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
     }
 
     void Update()
@@ -43,6 +43,10 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
         {
             DrawManager.Instance.Undo();
         });
+        _homeButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
+        });
     }
 
     private void RemoveButtonListener()
@@ -50,6 +54,7 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
         _startButton.onClick.RemoveAllListeners();
         _restartButton.onClick.RemoveAllListeners();
         _eraseButton.onClick.RemoveAllListeners();
+        _homeButton.onClick.RemoveAllListeners();
     }
 
     private void OnStartButtonClicked()
@@ -59,14 +64,27 @@ public class UIDrawGameplayScreenHUD : MonoBehaviour
         _eraseButton.gameObject.SetActive(false);
     }
 
-    private void SetUpInkSlider()
-    {
-        _inkSlider.minValue = 0;
-        _inkSlider.maxValue = DrawManager.Instance.MaxLength;
-    }
 
     private void UpdateInkSlider()
     {
         _inkSlider.value = DrawManager.Instance.Remaining;
+    }
+
+    public void Handle(Message message)
+    {
+        switch (message.type)
+        {
+            case GameMessageType.OnLevelSetUp:
+                LevelStat stat = (LevelStat)message.data[0];
+                SetUpInkSlider(stat.MaxInk);
+                break;
+        }
+    }
+
+    private void SetUpInkSlider(float maxValue)
+    {
+        _inkSlider.minValue = 0;
+        _inkSlider.maxValue = maxValue;
+        _inkSlider.value = maxValue;
     }
 }

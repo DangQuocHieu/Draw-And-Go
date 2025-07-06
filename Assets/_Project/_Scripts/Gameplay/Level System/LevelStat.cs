@@ -7,6 +7,7 @@ public class LevelStat
     public int LevelId;
     public float MaxInk;
     public bool UseEngine;
+    public Vector2 CarPosition;
 
-    public GameObject levelPrefab;
+    public GameObject LevelPrefab;
 }

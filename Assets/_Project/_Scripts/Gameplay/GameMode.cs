@@ -2,5 +2,5 @@ using UnityEngine;
 
 public enum GameMode 
 {
-    Draw, Cut
+    Draw, Cut, Create
 }

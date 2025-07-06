@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2465344501157369349}
   - component: {fileID: 3795420677170307279}
   - component: {fileID: 2314643721135348078}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15981689
+        value: 0.10386291
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -187,7 +187,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.12}
+  m_Offset: {x: 0, y: 0.08}
   m_EdgeRadius: 0
   m_Points:
   - {x: -0.5, y: 0}

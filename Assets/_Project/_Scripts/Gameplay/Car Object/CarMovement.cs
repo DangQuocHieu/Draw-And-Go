@@ -1,5 +1,6 @@
     using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 {
@@ -8,7 +9,10 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     [SerializeField] private CircleCollider2D _backWheelCollider;
     [SerializeField] private WheelJoint2D _frontWheel;
     [SerializeField] private CircleCollider2D _frontWheelCollider;
-    [SerializeField] private bool _useEngine = true;
+    [SerializeField] private bool _useEngine = false;
+
+    [SerializeField] private float _groundCheckRadius;
+    [SerializeField] private LayerMask _roadLayer;
 
     private Collider2D[] _carCollider;
 
@@ -27,14 +31,29 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         _carRb.centerOfMass = new Vector2(0, -0.5f);
     }
 
+    
+
     void OnEnable()
     {
         MessageManager.AddSubscriber(GameMessageType.OnCarStarted, this);
+        MessageManager.AddSubscriber(GameMessageType.OnLevelSetUp, this);
+
+    }
+
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == GameConstant.HOME_SCENE)
+        {
+            OnStart();
+            StartCoroutine(LandingCoroutine());
+        }
     }
 
     void OnDisable()
     {
         MessageManager.RemoveSubscriber(GameMessageType.OnCarStarted, this);
+        MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
+
     }
 
     void FixedUpdate()
@@ -50,6 +69,8 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
             _speed = -_speed;
         }
     }
+
+
     private void HandleMovement()
     {
         if (!_useEngine) return;
@@ -65,10 +86,27 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     {
         switch (message.type)
         {
+            case GameMessageType.OnLevelSetUp:
+                LevelStat stat = (LevelStat)message.data[0];
+                transform.position = stat.CarPosition;
+                if (stat.UseEngine) StartCoroutine(LandingCoroutine());
+                break;
             case GameMessageType.OnCarStarted:
                 OnStart();
                 break;
         }
+    }
+
+    private IEnumerator LandingCoroutine()
+    {
+        while (true)
+        {
+            if (Physics2D.OverlapCircle(transform.position, _groundCheckRadius, _roadLayer)) break;
+            yield return null;
+        }
+        TurnOnEngine();
+
+
     }
     public void OnStart()
     {
@@ -103,6 +141,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 
     public void TurnOnEngine()
     {
+        Debug.Log("TURN ON ENGINE");
         _useEngine = true;
     }
 
@@ -118,5 +157,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         TurnOnEngine();
         ChangeCarSpeed(speed);
     }
+
+    
 
 }

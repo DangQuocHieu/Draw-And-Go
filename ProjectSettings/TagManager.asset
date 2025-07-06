@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wall
+  - End Point
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,10 @@ TagManager:
   - UI
   - Car Wheel
   - Car Body
-  - Line
-  - Powerup
-  - Platform
   - 
+  - Powerup
+  - Road
+  - EndPoint
   - 
   - 
   - 

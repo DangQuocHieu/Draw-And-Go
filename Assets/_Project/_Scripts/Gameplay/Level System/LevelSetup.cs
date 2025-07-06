@@ -3,5 +3,15 @@ using UnityEngine;
 
 public class LevelSetup : MonoBehaviour
 {
-    [SerializeField] private List<LevelStat> _drawLevelStats = new List<LevelStat>();
+    void Start()
+    {
+        SetUpLevel();
+    }
+
+    private void SetUpLevel()
+    {
+        LevelStat currentLevel = LevelManager.Instance.GetCurrentLevel();
+        Instantiate(currentLevel.LevelPrefab);
+        MessageManager.SendMessage(new Message(GameMessageType.OnLevelSetUp, new object[] { currentLevel }));
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DrawManager : Singleton<DrawManager>
+public class DrawManager : Singleton<DrawManager>, IMessageHandle
 {
     [SerializeField] private Transform _lineContainer;
     [SerializeField] private Line _linePrefab;
@@ -21,7 +21,16 @@ public class DrawManager : Singleton<DrawManager>
     protected override void Awake()
     {
         base.Awake();
-        _remaining = _maxLength;
+    }
+
+    void OnEnable()
+    {
+        MessageManager.AddSubscriber(GameMessageType.OnLevelSetUp, this);
+    }
+
+    void OnDisable()
+    {
+        MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
     }
     void Update()
     {
@@ -58,7 +67,6 @@ public class DrawManager : Singleton<DrawManager>
 
         if (_lineStack.Count == 0)
         {
-            Debug.Log("Line Stack count is equal to 0");
             return;
         }
         Line line = _lineStack.Pop();
@@ -77,4 +85,15 @@ public class DrawManager : Singleton<DrawManager>
         return _remaining / _maxLength;
     }
 
+    public void Handle(Message message)
+    {
+        switch (message.type)
+        {
+            case GameMessageType.OnLevelSetUp:
+                LevelStat stat = (LevelStat)message.data[0];
+                _maxLength = stat.MaxInk;
+                _remaining = _maxLength;
+                break;
+        }
+    }
 }

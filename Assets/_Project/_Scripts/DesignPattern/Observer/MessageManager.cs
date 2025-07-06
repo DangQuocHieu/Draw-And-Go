@@ -3,7 +3,9 @@ using UnityEngine;
 
 public enum GameMessageType
 {
-    OnCarStarted
+    OnCarStarted,
+    OnLevelSetUp,
+    OnLevelCompleted
 }
 
 public class Message
