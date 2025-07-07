@@ -7,6 +7,7 @@ public class HomeScreenHUD : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _drawLevelText;
     [SerializeField] private TextMeshProUGUI _cutLevelText;
+    [SerializeField] private TextMeshProUGUI _coinText;
 
     [Header("Buttons")]
     [SerializeField] private Button _drawButton;
@@ -21,6 +22,11 @@ public class HomeScreenHUD : MonoBehaviour
     void Start()
     {
         SetLevelText();
+    }
+
+    void Update()
+    {
+        UpdateCoinText();
     }
 
     void OnDisable()
@@ -62,5 +68,10 @@ public class HomeScreenHUD : MonoBehaviour
     {
         _drawButton.onClick.RemoveAllListeners();
         _cutButton.onClick.RemoveAllListeners();
+    }
+
+    private void UpdateCoinText()
+    {
+        _coinText.text = CurrencyManager.Instance.TotalCoin.ToString();
     }
 }

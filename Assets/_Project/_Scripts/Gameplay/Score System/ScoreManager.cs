@@ -56,5 +56,19 @@ public class ScoreManager : Singleton<ScoreManager>
         }
         return score;
     }
+
+    public void UpdateScoreList(GameMode gameMode, int levelIndex)
+    {
+        List<int> scoreList = DataManager.Instance.GetScoreList(gameMode);
+        while (scoreList.Count < levelIndex + 1)
+        {
+            scoreList.Add(0);
+        }
+        int totalScore = GetTotalScore();
+        int coinCollected = totalScore - scoreList[levelIndex];
+        if (coinCollected < 0) coinCollected = 0;
+        scoreList[levelIndex] = Mathf.Max(scoreList[levelIndex], totalScore);
+        CurrencyManager.Instance.AddCoin(coinCollected);
+    }
     
 }

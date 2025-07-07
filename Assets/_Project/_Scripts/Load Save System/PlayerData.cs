@@ -6,7 +6,7 @@ public class PlayerData
     public int DrawLevelReached;
     public int CutLevelReached;
     public int TotalCoin;
-    public List<int> DrawLevelStars = new List<int>();
-    public List<int> CutLevelStars = new List<int>();
+    public List<int> DrawLevelScores = new List<int>();
+    public List<int> CutLevelScores = new List<int>();
     
 }

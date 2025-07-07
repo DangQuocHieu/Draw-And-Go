@@ -88,7 +88,6 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         {
             case GameMessageType.OnLevelSetUp:
                 LevelStat stat = (LevelStat)message.data[0];
-                transform.position = stat.CarPosition;
                 if (stat.UseEngine) StartCoroutine(LandingCoroutine());
                 break;
             case GameMessageType.OnCarStarted:

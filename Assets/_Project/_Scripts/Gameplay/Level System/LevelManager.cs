@@ -60,25 +60,9 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
         {
             case GameMode.Draw:
                 data.DrawLevelReached = _levelReached;
-                if (ScoreManager.Instance != null)
-                {
-                    while (data.DrawLevelStars.Count < _currentLevelIndex + 1)
-                    {
-                        data.DrawLevelStars.Add(0);
-                    }
-                    data.DrawLevelStars[_currentLevelIndex] = ScoreManager.Instance.GetTotalScore();
-                }
                 break;
             case GameMode.Cut:
                 data.CutLevelReached = _levelReached;
-                if (ScoreManager.Instance != null)
-                {
-                    while (data.CutLevelStars.Count < _currentLevelIndex + 1)
-                    {
-                        data.CutLevelStars.Add(0);
-                    }
-                    data.CutLevelStars[_currentLevelIndex] = ScoreManager.Instance.GetTotalScore();
-                }
                 break;
         }
     }
@@ -108,6 +92,7 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
 
     private void OnLevelCompleted()
     {
+        ScoreManager.Instance.UpdateScoreList(_currentMode, _currentLevelIndex);
         UnlockNextLevel();
         DataManager.Instance.SaveGame();
     }

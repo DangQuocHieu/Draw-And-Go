@@ -68,20 +68,17 @@ public class DataManager : PersistentSingleton<DataManager>
         }
     }
 
-    public List<int> GetStarList(GameMode mode)
+    public List<int> GetScoreList(GameMode mode)
     {
         switch (mode)
         {
             case GameMode.Draw:
-                return _data.DrawLevelStars;
+                return _data.DrawLevelScores;
             case GameMode.Cut:
-                return _data.CutLevelStars;
+                return _data.CutLevelScores;
         }
         return new List<int>();
     }
-
-
-
 
 
 }

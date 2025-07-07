@@ -12,6 +12,9 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
     [SerializeField] private TextMeshProUGUI _totalLengthText;
     [SerializeField] private Slider _inkSlider;
 
+    [SerializeField] private RectTransform _engineOffRect;
+    [SerializeField] private TextMeshProUGUI _levelText;
+
 
     void OnEnable()
     {
@@ -24,7 +27,11 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
         RemoveButtonListener();
         MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
     }
-
+    void Start()
+    {
+        _levelText.text = "Level " + (LevelManager.Instance.CurrentLevelIndex + 1).ToString();
+        
+    }
     void Update()
     {
         UpdateInkSlider();
@@ -77,6 +84,10 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
             case GameMessageType.OnLevelSetUp:
                 LevelStat stat = (LevelStat)message.data[0];
                 SetUpInkSlider(stat.MaxInk);
+                if (!stat.UseEngine)
+                {
+                    _engineOffRect.gameObject.SetActive(true);
+                }
                 break;
         }
     }

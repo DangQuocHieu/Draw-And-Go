@@ -78,7 +78,7 @@ public class LevelSelectionScreenHUD : MonoBehaviour
 
     private void DisplayStarUI()
     {
-        List<int> starList = DataManager.Instance.GetStarList(LevelManager.Instance.CurrentMode);
+        List<int> starList = DataManager.Instance.GetScoreList(LevelManager.Instance.CurrentMode);
         for (int i = 0; i < starList.Count; i++)
         {
             _allLevelButtons[i].DisplayStarUI(starList[i]);

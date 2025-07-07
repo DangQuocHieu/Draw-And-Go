@@ -7,8 +7,7 @@ public class Teleporter : MonoBehaviour, IPowerup
 {
     private HashSet<GameObject> _usedTeleporter = new HashSet<GameObject>();
     [SerializeField] private Teleporter _destination;
-    [SerializeField] private float _coolDown = 1f;
-
+    
     public void ApplyEffect(GameObject target)
     {
         if (_usedTeleporter.Contains(target))
