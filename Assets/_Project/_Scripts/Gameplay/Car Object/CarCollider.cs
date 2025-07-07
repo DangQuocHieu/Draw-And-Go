@@ -7,6 +7,7 @@ public class CarCollider : MonoBehaviour
         if (collision.GetComponent<IPowerup>() != null)
         {
             collision.GetComponent<IPowerup>().ApplyEffect(gameObject);
+            Debug.Log("POWERUP");
 
         }
         else if (collision.gameObject.CompareTag(GameConstant.END_POINT_TAG))
