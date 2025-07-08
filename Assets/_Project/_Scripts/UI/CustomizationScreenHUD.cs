@@ -1,16 +1,27 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CustomizationScreenHUD : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Button Prefab")]
+    [SerializeField] private CarPartSelectionButton _selectionButtonPrefab;
+
+    [Header("Customization Button Container")]
+    [SerializeField] private RectTransform _classicCarBodyContainer;
+    [SerializeField] private RectTransform _classicCarWheelContainer;
+
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    public void SetUpSelectionButton(List<CarPartSO> datas, UnlockType unlockType, RectTransform container)
     {
-        
+        List<CarPartSO> current = datas.Where(T => T.UnlockType == unlockType).ToList();
+        foreach (var data in current)
+        {
+            CarPartSelectionButton button = Instantiate(_selectionButtonPrefab, container);
+            button.Init(data);
+        }
     }
 }
