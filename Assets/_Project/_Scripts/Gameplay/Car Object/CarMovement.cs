@@ -15,10 +15,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     [SerializeField] private LayerMask _roadLayer;
 
     private Collider2D[] _carCollider;
-
-
     private Rigidbody2D _carRb;
-
     private bool _canMove = false;
 
 

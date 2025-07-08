@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6449076493740894146}
   - component: {fileID: 4205667266247437644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spring Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3625901488560908504}
   - component: {fileID: 1040112990177802113}
   - component: {fileID: 5002772172341868501}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boostForce: 25
   _direction: {x: 1, y: 0}
+  _springAnim: {fileID: 8578715677174593292}
   _releaseTime: 1
 --- !u!1 &6667913899122803957
 GameObject:

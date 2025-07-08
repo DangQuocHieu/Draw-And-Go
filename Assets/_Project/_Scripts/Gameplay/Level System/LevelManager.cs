@@ -53,6 +53,10 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
     {
         return _levelDictionary[_currentMode].LevelStats.Count;
     }
+    public int GetLevelCount(GameMode gameMode)
+    {
+        return _levelDictionary[_currentMode].LevelStats.Count;
+    }
 
     public void SaveData(PlayerData data)
     {
@@ -101,7 +105,6 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
         int maxLevelIndex = _levelDictionary[_currentMode].LevelStats.Count - 1;
         int nextLevel = _currentLevelIndex + 1;
         _levelReached = Mathf.Max(nextLevel, _levelReached);
-        _levelReached = Mathf.Min(_levelReached, maxLevelIndex);
     }
 
     public void GoToNextLevel()

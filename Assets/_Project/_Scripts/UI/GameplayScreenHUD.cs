@@ -29,6 +29,7 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
     }
     void Start()
     {
+        if(LevelManager.Instance != null)
         _levelText.text = "Level " + (LevelManager.Instance.CurrentLevelIndex + 1).ToString();
         
     }

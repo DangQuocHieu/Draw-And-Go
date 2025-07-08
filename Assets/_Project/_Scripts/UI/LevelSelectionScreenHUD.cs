@@ -66,7 +66,7 @@ public class LevelSelectionScreenHUD : MonoBehaviour
         }
 
         int levelReached = LevelManager.Instance.LevelReached;
-        for (int i = 0; i <= levelReached; i++)
+        for (int i = 0; i <= levelReached && i < levelCount; i++)
         {
             _allLevelButtons[i].GetComponent<LevelButton>().UnlockLevelButton();
         }

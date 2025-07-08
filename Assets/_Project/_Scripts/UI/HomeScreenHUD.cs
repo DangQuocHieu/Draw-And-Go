@@ -36,8 +36,10 @@ public class HomeScreenHUD : MonoBehaviour
 
     private void SetLevelText()
     {
-        _drawLevelText.text = "Level " + (DataManager.Instance.Data.DrawLevelReached + 1).ToString();
-        _cutLevelText.text = "Level " + (DataManager.Instance.Data.CutLevelReached + 1).ToString();
+        int drawLevelCount = LevelManager.Instance.GetLevelCount(GameMode.Draw);
+        int cutLevelCount = LevelManager.Instance.GetLevelCount(GameMode.Cut);
+        _drawLevelText.text = "Level " + Mathf.Min(drawLevelCount, DataManager.Instance.Data.DrawLevelReached + 1).ToString();
+        _cutLevelText.text = "Level " + Mathf.Min(cutLevelCount, DataManager.Instance.Data.CutLevelReached + 1).ToString();
     }
 
     private void AddButtonListener()
