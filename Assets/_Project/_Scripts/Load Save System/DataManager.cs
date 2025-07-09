@@ -12,11 +12,13 @@ public class DataManager : PersistentSingleton<DataManager>
 
     private List<ISaveable> _saveables = new List<ISaveable>();
 
-    protected override void Awake()
+    void Start()
     {
-        base.Awake();
+        _saveables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveable>().ToList();
+        SaveSystem.Initialize(_saveName);
+        LoadGame();
     }
-
+    
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -29,15 +31,10 @@ public class DataManager : PersistentSingleton<DataManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        LoadGame();
+        // LoadGame();
     }
 
-    void Start()
-    {
-        _saveables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveable>().ToList();
-        SaveSystem.Initialize(_saveName);
-        LoadGame();
-    }
+
 
     void Update()
     {
@@ -78,6 +75,16 @@ public class DataManager : PersistentSingleton<DataManager>
                 return _data.CutLevelScores;
         }
         return new List<int>();
+    }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause) SaveGame();
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveGame();
     }
 
 

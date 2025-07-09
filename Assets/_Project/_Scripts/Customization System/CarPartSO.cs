@@ -7,6 +7,7 @@ public enum UnlockType
 }
 public abstract class CarPartSO : ScriptableObject
 {
+    public PartType PartType;
     public string PartID;
     public Sprite PartSprite;
     public UnlockType UnlockType;

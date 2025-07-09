@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a444113ede601b643ae494cb0ccfce53, type: 3}
   m_Name: SchoolBus
   m_EditorClassIdentifier: 
-  PartID: 
-  PartSprite: {fileID: 6817921020489240900, guid: 45d4d268adfbf3141afb4c9e6c554ab1, type: 3}
-  CarBodyPrefab: {fileID: 0}
+  PartType: 0
+  PartID: School Bus
+  PartSprite: {fileID: 21300000, guid: 45d4d268adfbf3141afb4c9e6c554ab1, type: 3}
+  UnlockType: 0
+  CarBodyPrefab: {fileID: 9041701297208302512, guid: a624e73b20d6c394eabb9f582ddfe185, type: 3}

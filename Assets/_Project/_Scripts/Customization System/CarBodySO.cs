@@ -3,5 +3,4 @@ using UnityEngine;
 public class CarBodySO : CarPartSO
 {
     public GameObject CarBodyPrefab;
-    
 }

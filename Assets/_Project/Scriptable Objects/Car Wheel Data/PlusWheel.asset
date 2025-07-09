@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01be0584fde971a419d9c2d2cfba8a09, type: 3}
   m_Name: PlusWheel
   m_EditorClassIdentifier: 
-  PartID: 
-  PartSprite: {fileID: 0}
+  PartType: 1
+  PartID: Plus Wheel
+  PartSprite: {fileID: 21300000, guid: 65c58260508ad26419ca4e2aaede8d43, type: 3}
+  UnlockType: 0

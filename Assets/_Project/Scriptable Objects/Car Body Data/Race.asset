@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a444113ede601b643ae494cb0ccfce53, type: 3}
   m_Name: Race
   m_EditorClassIdentifier: 
-  PartID: 
-  PartSprite: {fileID: 6817921020489240900, guid: 45d4d268adfbf3141afb4c9e6c554ab1, type: 3}
-  CarBodyPrefab: {fileID: 0}
+  PartType: 0
+  PartID: Race
+  PartSprite: {fileID: 21300000, guid: 9a6d6f17f6abcde439df5d335e5cd5b6, type: 3}
+  UnlockType: 0
+  CarBodyPrefab: {fileID: 354818095889428877, guid: 2ff61f56ed8353244914320f0d132afc, type: 3}

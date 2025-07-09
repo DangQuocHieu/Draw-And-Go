@@ -8,6 +8,7 @@ public class HomeScreenHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _drawLevelText;
     [SerializeField] private TextMeshProUGUI _cutLevelText;
     [SerializeField] private TextMeshProUGUI _coinText;
+    [SerializeField] private TextMeshProUGUI _priceText;
 
     [Header("Buttons")]
     [SerializeField] private Button _drawButton;
@@ -27,6 +28,7 @@ public class HomeScreenHUD : MonoBehaviour
     void Update()
     {
         UpdateCoinText();
+        UpdatePriceText();
     }
 
     void OnDisable()
@@ -52,6 +54,10 @@ public class HomeScreenHUD : MonoBehaviour
         {
             OnCutButtonClicked();
         });
+        _customizeButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadSceneAsync(GameConstant.CUSTOMIZATION_SCENE);
+        });
     }
 
     private void OnDrawButtonClicked()
@@ -70,10 +76,17 @@ public class HomeScreenHUD : MonoBehaviour
     {
         _drawButton.onClick.RemoveAllListeners();
         _cutButton.onClick.RemoveAllListeners();
+        _customizeButton.onClick.RemoveAllListeners();
     }
 
     private void UpdateCoinText()
     {
         _coinText.text = CurrencyManager.Instance.TotalCoin.ToString();
+    }
+
+    private void UpdatePriceText()
+    {
+        int price = ItemUnlockManager.Instance.ItemPrice;
+        _priceText.text = _coinText.text + "/" + price.ToString();
     }
 }
