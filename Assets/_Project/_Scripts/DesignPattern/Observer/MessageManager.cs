@@ -7,6 +7,7 @@ public enum GameMessageType
     OnLevelSetUp,
     OnLevelCompleted,
     OnCarCustomizationLoaded,
+    OnItemUnlocked
 }
 
 public class Message

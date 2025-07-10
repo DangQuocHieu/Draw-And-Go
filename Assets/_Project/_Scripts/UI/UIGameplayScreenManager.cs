@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIScreenManager : MonoBehaviour, IMessageHandle
+public class UIGameplayScreenManager : MonoBehaviour, IMessageHandle
 {
     [SerializeField] private LevelCompleteScreenHUD _levelCompleteScreen;
     [SerializeField] private GamePlayScreenHUD _gameplayScreen;

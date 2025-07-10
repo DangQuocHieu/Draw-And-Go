@@ -15,6 +15,7 @@ public class HomeScreenHUD : MonoBehaviour
     [SerializeField] private Button _cutButton;
     [SerializeField] private Button _createButton;
     [SerializeField] private Button _customizeButton;
+    [SerializeField] private Button _unlockButton;
 
     void OnEnable()
     {
@@ -58,6 +59,10 @@ public class HomeScreenHUD : MonoBehaviour
         {
             SceneManager.LoadSceneAsync(GameConstant.CUSTOMIZATION_SCENE);
         });
+        _unlockButton.onClick.AddListener(() =>
+        {
+            ItemUnlockManager.Instance.UnlockByCoin();
+        });
     }
 
     private void OnDrawButtonClicked()
@@ -77,6 +82,7 @@ public class HomeScreenHUD : MonoBehaviour
         _drawButton.onClick.RemoveAllListeners();
         _cutButton.onClick.RemoveAllListeners();
         _customizeButton.onClick.RemoveAllListeners();
+        _unlockButton.onClick.RemoveAllListeners();
     }
 
     private void UpdateCoinText()

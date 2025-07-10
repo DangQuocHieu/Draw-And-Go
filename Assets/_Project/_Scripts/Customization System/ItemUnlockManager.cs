@@ -27,6 +27,7 @@ public class ItemUnlockManager : Singleton<ItemUnlockManager>
         lockedItem.Remove(rand);
         CurrencyManager.Instance.AddCoin(-_itemPrice);
         //SEND MESSAGE : DISPLAY SOME UI,...
+        MessageManager.SendMessage(new Message(GameMessageType.OnItemUnlocked, new object[]{rand}));
         DataManager.Instance.SaveGame();
     }
 
