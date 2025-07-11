@@ -18,7 +18,7 @@ public class DataManager : PersistentSingleton<DataManager>
         SaveSystem.Initialize(_saveName);
         LoadGame();
     }
-    
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -85,6 +85,11 @@ public class DataManager : PersistentSingleton<DataManager>
     void OnApplicationQuit()
     {
         SaveGame();
+    }
+
+    public int GetTotalLevelReached()
+    {
+        return _data.DrawLevelReached + _data.CutLevelReached;
     }
 
 

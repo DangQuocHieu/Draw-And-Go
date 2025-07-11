@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a444113ede601b643ae494cb0ccfce53, type: 3}
+  m_Name: Sedan
+  m_EditorClassIdentifier: 
+  PartType: 0
+  PartID: Sedan
+  PartSprite: {fileID: 21300000, guid: 85e21c4ad1355a04d9b19fcf54ff3cf7, type: 3}
+  UnlockType: 0
+  LevelToUnlock: -1
+  CarBodyPrefab: {fileID: 9041701297208302512, guid: 30c24c67b77f8db4fbd60f0d9c792ce8, type: 3}

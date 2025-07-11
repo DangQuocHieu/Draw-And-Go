@@ -63,7 +63,7 @@ public class CarCustomizationManager : PersistentSingleton<CarCustomizationManag
             _unlockedItemIDs.Add(_defaultCarWheelData.PartID);
         }
 
-            _customizationData.BodySO = _carPartDatas.Where(T => T.PartID == data.CarBodyID).FirstOrDefault() as CarBodySO;
+        _customizationData.BodySO = _carPartDatas.Where(T => T.PartID == data.CarBodyID).FirstOrDefault() as CarBodySO;
         _customizationData.WheelSO = _carPartDatas.Where(T => T.PartID == data.CarWheelID).FirstOrDefault() as CarWheelSO;
         MessageManager.SendMessage(new Message(GameMessageType.OnCarCustomizationLoaded));
         InitializeCarPartList();

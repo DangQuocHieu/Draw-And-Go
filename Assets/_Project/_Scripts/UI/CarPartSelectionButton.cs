@@ -1,14 +1,14 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
-using Unity.Android.Gradle.Manifest;
-using UnityEditor.SearchService;
+using TMPro;
 
 public class CarPartSelectionButton : MonoBehaviour
 {
     [SerializeField] private PartType _partType;
     private CarPartSO _partSO;
     [SerializeField] private Image _carPartImage;
+    [SerializeField] private TextMeshProUGUI _levelToUnlockText;
     private bool _isUnlocked;
 
     IEnumerator Start()
@@ -17,6 +17,12 @@ public class CarPartSelectionButton : MonoBehaviour
         if (IsSaved())
         {
             CustomizationScreenHUD.Instance.UpdateSelector(_partType, GetComponent<RectTransform>().position);
+        }
+        else if (_partSO.UnlockType == UnlockType.Special && !_isUnlocked)
+        {
+            int totalLevelReached = DataManager.Instance.GetTotalLevelReached();
+            _levelToUnlockText.gameObject.SetActive(true);
+            _levelToUnlockText.text = totalLevelReached + "/" + _partSO.LevelToUnlock;
         }
     }
 

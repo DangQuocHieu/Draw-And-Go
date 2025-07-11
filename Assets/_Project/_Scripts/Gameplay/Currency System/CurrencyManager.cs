@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CurrencyManager : PersistentSingleton<CurrencyManager>, ISaveable
 {
-    private int _totalCoin;
+    [SerializeField] private int _totalCoin;
     public int TotalCoin => _totalCoin;
 
     public void AddCoin(int coinToAdd)

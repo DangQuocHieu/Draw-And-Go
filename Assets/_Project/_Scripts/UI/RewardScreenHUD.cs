@@ -54,7 +54,7 @@ public class RewardScreenHUD : MonoBehaviour
 
     public void OnItemUnlocked(CarPartSO data)
     {
-        _itemText.text = data.PartID;
+        _itemText.text = data.PartID.ToUpper();
         _itemImage.sprite = data.PartSprite;
     }
 }

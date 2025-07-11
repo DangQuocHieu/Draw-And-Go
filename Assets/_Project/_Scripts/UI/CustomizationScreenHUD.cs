@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +14,8 @@ public class CustomizationScreenHUD : Singleton<CustomizationScreenHUD>
     [Header("Customization Button Container")]
     [SerializeField] private RectTransform _classicCarBodyContainer;
     [SerializeField] private RectTransform _classicCarWheelContainer;
+    [SerializeField] private RectTransform _specialCarBodyContainer;
+    [SerializeField] private RectTransform _specialCarWheelContainer;
     [Header("Selector")]
     [SerializeField] private RectTransform _carBodySelector;
     [SerializeField] private RectTransform _carWheelSelector;
@@ -27,10 +27,10 @@ public class CustomizationScreenHUD : Singleton<CustomizationScreenHUD>
     {
         _homeButton.onClick.AddListener(() =>
         {
-            DataManager.Instance.SaveGame(); //SAVE CUSTOMIZATION
+            // DataManager.Instance.SaveGame(); //SAVE CUSTOMIZATION
             SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
         });
-       
+
     }
 
     void OnDisable()
@@ -38,17 +38,30 @@ public class CustomizationScreenHUD : Singleton<CustomizationScreenHUD>
         _homeButton.onClick.RemoveAllListeners();
 
     }
-    
+
     private void SetUpAllSelectionButtons()
     {
         List<CarPartSO> carBodyDatas = CarCustomizationManager.Instance.CarBodyDatas;
         List<CarPartSO> carWheelDatas = CarCustomizationManager.Instance.CarWheelDatas;
-        SetUpSelectionButton(carBodyDatas, UnlockType.Classic, PartType.Body, _classicCarBodyContainer);
-        SetUpSelectionButton(carWheelDatas, UnlockType.Classic, PartType.Wheel, _classicCarWheelContainer);
+        SetUpClassicSelectionButton(carBodyDatas, PartType.Body, _classicCarBodyContainer);
+        SetUpClassicSelectionButton(carWheelDatas, PartType.Wheel, _classicCarWheelContainer);
+        SetUpSpecialSelectionButton(carBodyDatas, PartType.Body, _specialCarBodyContainer);
+        SetUpSpecialSelectionButton(carWheelDatas, PartType.Wheel, _specialCarWheelContainer);
     }
-    public void SetUpSelectionButton(List<CarPartSO> datas, UnlockType unlockType, PartType partType, RectTransform container)
+    public void SetUpClassicSelectionButton(List<CarPartSO> datas, PartType partType, RectTransform container)
     {
-        List<CarPartSO> current = datas.Where(T => T.UnlockType == unlockType).ToList();
+        List<CarPartSO> current = datas.Where(T => T.UnlockType == UnlockType.Classic).ToList();
+        foreach (var data in current)
+        {
+            CarPartSelectionButton button = Instantiate(_selectionButtonPrefab, container);
+            button.Init(data, partType);
+            _allSelectionButtons.Add(button);
+        }
+    }
+
+    public void SetUpSpecialSelectionButton(List<CarPartSO> datas, PartType partType, RectTransform container)
+    {
+        List<CarPartSO> current = datas.Where(T => T.UnlockType == UnlockType.Special).OrderBy(T => T.LevelToUnlock).ToList();
         foreach (var data in current)
         {
             CarPartSelectionButton button = Instantiate(_selectionButtonPrefab, container);

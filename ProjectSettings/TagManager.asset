@@ -49,9 +49,6 @@ TagManager:
   - name: Line
     uniqueID: 143215679
     locked: 0
-  - name: RewardScreen
-    uniqueID: 691943877
-    locked: 0
   - name: EndPoint
     uniqueID: 3273032181
     locked: 0
@@ -61,11 +58,11 @@ TagManager:
   - name: Platform
     uniqueID: 656763391
     locked: 0
-  - name: Car Body
+  - name: Car
     uniqueID: 1579648489
     locked: 0
-  - name: CarWheel
-    uniqueID: 2070428711
+  - name: UI
+    uniqueID: 4052488997
     locked: 0
   m_RenderingLayers:
   - Default

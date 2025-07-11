@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessageHandle
 {
@@ -99,10 +97,10 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
         ScoreManager.Instance.UpdateScoreList(_currentMode, _currentLevelIndex);
         UnlockNextLevel();
         DataManager.Instance.SaveGame();
+        ItemUnlockManager.Instance.UnlockByLevel();
     }
     private void UnlockNextLevel()
     {
-        int maxLevelIndex = _levelDictionary[_currentMode].LevelStats.Count - 1;
         int nextLevel = _currentLevelIndex + 1;
         _levelReached = Mathf.Max(nextLevel, _levelReached);
     }
@@ -113,4 +111,5 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
         ++_currentLevelIndex;
         _currentLevelIndex = Mathf.Min(_currentLevelIndex, maxLevelIndex);
     }
+
 }
