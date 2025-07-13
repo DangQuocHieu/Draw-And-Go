@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfb3db3aeb5d0140aafc19a346bd1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boostForce: 60
+  _boostForce: 80
   _direction: {x: 0, y: 1}
   _springAnim: {fileID: 5142202401989760616}
 --- !u!61 &2717142456370192944

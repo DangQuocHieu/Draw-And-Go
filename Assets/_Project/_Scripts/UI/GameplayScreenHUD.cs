@@ -75,6 +75,7 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
 
     private void UpdateInkSlider()
     {
+        if (DrawManager.Instance == null) return;
         _inkSlider.value = DrawManager.Instance.Remaining;
     }
 

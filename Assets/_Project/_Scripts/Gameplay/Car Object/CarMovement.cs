@@ -1,4 +1,5 @@
-    using System.Collections;
+using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     private Collider2D[] _carCollider;
     private Rigidbody2D _carRb;
     private bool _canMove = false;
+    private bool _isGrounded;
 
 
 
@@ -28,7 +30,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         _carRb.centerOfMass = new Vector2(0, -0.5f);
     }
 
-    
+
 
     void OnEnable()
     {
@@ -65,6 +67,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         {
             _speed = -_speed;
         }
+        _isGrounded = Physics2D.OverlapCircle(transform.position, _groundCheckRadius, _roadLayer);
     }
 
 
@@ -97,12 +100,11 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     {
         while (true)
         {
-            if (Physics2D.OverlapCircle(transform.position, _groundCheckRadius, _roadLayer)) break;
+            if (_isGrounded) break;
             yield return null;
         }
         TurnOnEngine();
-
-
+        _carRb.constraints = RigidbodyConstraints2D.None;
     }
     public void OnStart()
     {
@@ -131,14 +133,29 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
 
     public void OnGravityFlip()
     {
-        _speed = -_speed;
+        StartCoroutine(OnGravityFlipCoroutine());
+    }
+
+    private IEnumerator OnGravityFlipCoroutine()
+    {
         transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+        _carRb.centerOfMass = new Vector2(0, 0.5f);
+        _carRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+        _speed = -_speed;
+        yield return new WaitUntil(() => !_isGrounded);
+        StartCoroutine(LandingCoroutine());
     }
 
     public void TurnOnEngine()
     {
         Debug.Log("TURN ON ENGINE");
         _useEngine = true;
+    }
+
+    public void TurnOffEngine()
+    {
+        _useEngine = false;
     }
 
     public void ChangeCarSpeed(float speed)
@@ -154,6 +171,6 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
         ChangeCarSpeed(speed);
     }
 
-    
+
 
 }

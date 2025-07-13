@@ -33,6 +33,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void UpdateStarUI()
     {
+        if (DrawManager.Instance == null) return;
         _rate = DrawManager.Instance.CalculateDrawRate();
         for (int i = 0; i < _starRates.Length; i++)
         {
