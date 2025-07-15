@@ -99,6 +99,26 @@ MonoBehaviour:
     MaxInk: 15
     UseEngine: 0
     LevelPrefab: {fileID: 1083522981677669009, guid: 32c078bcf71bab2458fa8102e87fa1e9, type: 3}
+  - Mode: 0
+    LevelId: 17
+    MaxInk: 30
+    UseEngine: 1
+    LevelPrefab: {fileID: 1083522981677669009, guid: d54bc60d77f32ad438c1408525814c67, type: 3}
+  - Mode: 0
+    LevelId: 18
+    MaxInk: 28
+    UseEngine: 0
+    LevelPrefab: {fileID: 1083522981677669009, guid: 5df16a72fbdbc3540b97a5b769ccfe83, type: 3}
+  - Mode: 0
+    LevelId: 19
+    MaxInk: 28
+    UseEngine: 0
+    LevelPrefab: {fileID: 1083522981677669009, guid: 827a383ce3accfe498818114a312c4b5, type: 3}
+  - Mode: 0
+    LevelId: 20
+    MaxInk: 3
+    UseEngine: 1
+    LevelPrefab: {fileID: 1083522981677669009, guid: c781b4cd39e6ea14ab63e673c14f44fa, type: 3}
   LevelPrefabs:
   - {fileID: 8347453839184006055, guid: ece8fe4f920d19e4792e609296754e6d, type: 3}
   - {fileID: 8347453839184006055, guid: 3ba80a1d571e57e4ba29afcd00c114d5, type: 3}
@@ -117,3 +137,7 @@ MonoBehaviour:
   - {fileID: 1083522981677669009, guid: 568e4b6d6a1e87b4685cbe659c40a65b, type: 3}
   - {fileID: 1083522981677669009, guid: 6087d71564916f847a371a4dde81fc63, type: 3}
   - {fileID: 1083522981677669009, guid: 32c078bcf71bab2458fa8102e87fa1e9, type: 3}
+  - {fileID: 1083522981677669009, guid: d54bc60d77f32ad438c1408525814c67, type: 3}
+  - {fileID: 1083522981677669009, guid: 5df16a72fbdbc3540b97a5b769ccfe83, type: 3}
+  - {fileID: 1083522981677669009, guid: 827a383ce3accfe498818114a312c4b5, type: 3}
+  - {fileID: 1083522981677669009, guid: c781b4cd39e6ea14ab63e673c14f44fa, type: 3}

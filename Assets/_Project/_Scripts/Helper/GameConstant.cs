@@ -9,5 +9,7 @@ public static class GameConstant
     public const string END_POINT_TAG = "End Point";
     public const string CUSTOMIZATION_SCENE = "Customization Scene";
     public const string SLICEABLE_LAYER = "Sliceable";
+    public const string CUSTOM_LEVEL_SCENE = "Custom Level Scene";
+    public const string LEVEL_EDITOR_SCENE = "Level Editor Scene";
     
 }
