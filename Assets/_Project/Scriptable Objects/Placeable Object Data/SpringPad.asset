@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e8fb47513bede4084d77af41bf83d9, type: 3}
+  m_Name: SpringPad
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: de5a4735571ddd94a8350788504537bb, type: 3}
+  Prefab: {fileID: 8105052558720653275, guid: f585c073b3de0fc49885b752a6d3adb5, type: 3}

@@ -1,16 +1,22 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlaceableObjectButton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private PlaceableObjectData _data;
+    public PlaceableObjectData Data => _data;
+    [SerializeField] private Image _objectImage;
+
+    public void Init(PlaceableObjectData data)
     {
-        
+        _data = data;
+        _objectImage.sprite = data.Sprite;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
+        GetComponent<Button>().onClick.AddListener(() =>
+        {
+            LevelEditorManager.Instance.OnObjectSelected(_data.Prefab);
+        });
     }
 }
