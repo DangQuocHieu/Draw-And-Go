@@ -11,5 +11,8 @@ public static class GameConstant
     public const string SLICEABLE_LAYER = "Sliceable";
     public const string CUSTOM_LEVEL_SCENE = "Custom Level Scene";
     public const string LEVEL_EDITOR_SCENE = "Level Editor Scene";
+    public const string DRAW_TOOL = "Draw";
+    public const string MOVE_TOOL = "Move";
+    public const string ERASE_TOOL = "Erase";
     
 }

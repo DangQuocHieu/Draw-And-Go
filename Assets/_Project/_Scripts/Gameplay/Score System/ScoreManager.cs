@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ScoreManager : Singleton<ScoreManager>
+public class ScoreManager : Singleton<ScoreManager>, IMessageHandle
 {
     [SerializeField] private RectTransform _starUI;
     [SerializeField] private RectTransform _starContainer;
@@ -14,7 +14,15 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         SetUpStarUI();
     }
+    void OnEnable()
+    {
+        MessageManager.AddSubscriber(GameMessageType.OnCustomLevelSetUp, this);
+    }
 
+    void OnDisable()
+    {
+        MessageManager.RemoveSubscriber(GameMessageType.OnCustomLevelSetUp, this);
+    }
     void Update()
     {
         UpdateStarUI();
@@ -71,5 +79,14 @@ public class ScoreManager : Singleton<ScoreManager>
         scoreList[levelIndex] = Mathf.Max(scoreList[levelIndex], totalScore);
         CurrencyManager.Instance.AddCoin(coinCollected);
     }
-    
+
+    public void Handle(Message message)
+    {
+        switch (message.type)
+        {
+            case GameMessageType.OnCustomLevelSetUp:
+                gameObject.SetActive(false);
+                break;
+        }
+    }
 }

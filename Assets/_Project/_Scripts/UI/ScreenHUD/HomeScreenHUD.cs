@@ -63,18 +63,28 @@ public class HomeScreenHUD : MonoBehaviour
         {
             ItemUnlockManager.Instance.UnlockByCoin();
         });
+        _createButton.onClick.AddListener(() =>
+        {
+            OnCreateButtonClicked();
+        });
     }
 
     private void OnDrawButtonClicked()
     {
-        LevelManager.Instance.CurrentMode = GameMode.Draw;
+        GameManager.Instance.CurrentMode = GameMode.Draw;
         SceneManager.LoadSceneAsync(GameConstant.LEVEL_SELECTION_SCENE);
     }
 
     private void OnCutButtonClicked()
     {
-        LevelManager.Instance.CurrentMode = GameMode.Cut;
+        GameManager.Instance.CurrentMode = GameMode.Cut;
         SceneManager.LoadSceneAsync(GameConstant.LEVEL_SELECTION_SCENE);
+    }
+
+    private void OnCreateButtonClicked()
+    {
+        GameManager.Instance.CurrentMode = GameMode.Create;
+        SceneManager.LoadSceneAsync(GameConstant.CUSTOM_LEVEL_SCENE);
     }
 
     private void RemoveButtonListener()
@@ -83,6 +93,7 @@ public class HomeScreenHUD : MonoBehaviour
         _cutButton.onClick.RemoveAllListeners();
         _customizeButton.onClick.RemoveAllListeners();
         _unlockButton.onClick.RemoveAllListeners();
+        _createButton.onClick.RemoveAllListeners();
     }
 
     private void UpdateCoinText()

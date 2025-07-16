@@ -16,7 +16,7 @@ public class PlaceableObjectButton : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            LevelEditorManager.Instance.OnObjectSelected(_data.Prefab);
+            LevelEditorManager.Instance.OnObjectSelected(_data.Prefab, _data.ObjectKey);
         });
     }
 }

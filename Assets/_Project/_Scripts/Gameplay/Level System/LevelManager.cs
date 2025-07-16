@@ -8,9 +8,7 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
     [SerializeField] private LevelCollection[] _levelCollections;
     private Dictionary<GameMode, LevelCollection> _levelDictionary = new Dictionary<GameMode, LevelCollection>();
     public Dictionary<GameMode, LevelCollection> LevelDictionary => _levelDictionary;
-
-    [SerializeField] private GameMode _currentMode;
-    public GameMode CurrentMode { get { return _currentMode; } set { _currentMode = value; } }
+    private GameMode _currentMode;
     [SerializeField] private int _currentLevelIndex;
     public int CurrentLevelIndex { get { return _currentLevelIndex; } set { _currentLevelIndex = value; } }
 
@@ -23,6 +21,10 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
         Init();
     }
 
+    void Update()
+    {
+        _currentMode = GameManager.Instance.CurrentMode;
+    }
     void OnEnable()
     {
         MessageManager.AddSubscriber(GameMessageType.OnLevelCompleted, this);

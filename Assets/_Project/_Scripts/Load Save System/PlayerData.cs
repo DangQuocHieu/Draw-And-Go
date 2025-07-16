@@ -12,5 +12,6 @@ public class PlayerData
     public string CarBodyID = "Hatchback";
     public string CarWheelID = "Plus Wheel";
     public List<string> UnlockedItems = new List<string>();
+    public List<CustomLevelData> CreatedLevels = new List<CustomLevelData>();
     
 }

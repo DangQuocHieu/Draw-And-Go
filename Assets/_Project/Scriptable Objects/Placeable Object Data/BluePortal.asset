@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e8fb47513bede4084d77af41bf83d9, type: 3}
   m_Name: BluePortal
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  ObjectKey: 
+  Sprite: {fileID: 0}
+  Prefab: {fileID: 0}

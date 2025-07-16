@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e8fb47513bede4084d77af41bf83d9, type: 3}
   m_Name: SpringPad
   m_EditorClassIdentifier: 
+  ObjectKey: SpringPad
   Sprite: {fileID: 21300000, guid: de5a4735571ddd94a8350788504537bb, type: 3}
   Prefab: {fileID: 8105052558720653275, guid: f585c073b3de0fc49885b752a6d3adb5, type: 3}

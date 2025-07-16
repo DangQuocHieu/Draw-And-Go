@@ -4,10 +4,12 @@ using UnityEngine;
 public enum GameMessageType
 {
     OnCarStarted,
-    OnLevelSetUp,
+    OnLevelSetUp, //For Built in Level
     OnLevelCompleted,
     OnCarCustomizationLoaded,
-    OnItemUnlocked
+    OnItemUnlocked,
+    OnLevelRemoved,
+    OnCustomLevelSetUp
 }
 
 public class Message
