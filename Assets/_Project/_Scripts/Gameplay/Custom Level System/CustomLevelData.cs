@@ -15,4 +15,5 @@ public class CustomLevelData
     public Vector2 CarPosition = new Vector2(-6.5f, 0.5f);
     public Vector2 EndPointPosition = new Vector2(6.5f, 0.5f);
     public bool UseEngine = true;
+    public string ScreenshotFileName;
 }

@@ -35,7 +35,6 @@ public class CustomLevelPanel : MonoBehaviour
         _removeButton.onClick.AddListener(() =>
         {
             CustomLevelManager.Instance.RemoveLevel(_customLevelData);
-            Debug.Log("REMOVE LEVEL");
         });
 
         _updateButton.onClick.AddListener(() =>
@@ -60,5 +59,11 @@ public class CustomLevelPanel : MonoBehaviour
         _customLevelData = data;
         _levelIndex = index;
         _levelText.text = "Level " + (_levelIndex + 1);
+        string screenshotFileName = data.ScreenshotFileName;
+        Texture2D screenshotTexture = ScreenshotHelper.LoadTextureFromFile(screenshotFileName);
+        if (screenshotTexture != null)
+        {
+            _levelButton.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = ScreenshotHelper.TextureToSprite(screenshotTexture);
+        }
     }
 }

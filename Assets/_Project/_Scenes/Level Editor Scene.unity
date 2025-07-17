@@ -132,8 +132,12 @@ PrefabInstance:
       value: Background
       objectReference: {fileID: 0}
     - target: {fileID: 2937145948653600270, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547747977763570183, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7084880963985083055, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
       propertyPath: m_LocalPosition.x
@@ -153,15 +157,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7084880963985083055, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7084880963985083055, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7084880963985083055, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7084880963985083055, guid: 65691cf6ae3e0f442baeb145f2d6ad65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -243,7 +247,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 6.5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -293,7 +297,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7895
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
@@ -2159,14 +2163,14 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 155686312}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2744,11 +2748,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 1506663204}
   - {fileID: 155686313}
-  - {fileID: 67292110}
   - {fileID: 6774120471220428756}
   - {fileID: 2003301798}
   - {fileID: 1674022267}
   - {fileID: 240671558}
+  - {fileID: 67292110}
   - {fileID: 1995157124}
   - {fileID: 589793032}
   - {fileID: 2939328289694680812}

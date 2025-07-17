@@ -780,7 +780,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 6.5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_text: Select Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dab9a10a11f52354d9e40a70420f2908, type: 2}
-  m_sharedMaterial: {fileID: -2406616554618983317, guid: dab9a10a11f52354d9e40a70420f2908, type: 2}
+  m_sharedMaterial: {fileID: 3609910837834986577, guid: dab9a10a11f52354d9e40a70420f2908, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

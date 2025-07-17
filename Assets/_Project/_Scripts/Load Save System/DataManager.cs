@@ -51,6 +51,11 @@ public class DataManager : PersistentSingleton<DataManager>
         }
         string json = JsonUtility.ToJson(_data);
         SaveSystem.SetString(_saveName, json);
+        SaveToDisk();
+    }
+
+    public void SaveToDisk()
+    {
         SaveSystem.SaveToDisk();
     }
 
