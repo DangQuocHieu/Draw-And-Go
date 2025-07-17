@@ -7,7 +7,10 @@ public class CustomLevelManager : PersistentSingleton<CustomLevelManager>, ISave
     [SerializeField] private List<CustomLevelData> _createdLevels = new List<CustomLevelData>();
     public List<CustomLevelData> CreatedLevels => _createdLevels;
     private CustomLevelData _currentLevelData;
-    public CustomLevelData CurrentLevelData {get { return _currentLevelData; } set{ _currentLevelData = value; }}
+    public CustomLevelData CurrentLevelData { get { return _currentLevelData; } set { _currentLevelData = value; } }
+
+    private int _levelIndex;
+    public int LevelIndex {get { return _levelIndex; } set{ _levelIndex = value; }}
     public void LoadData(PlayerData data)
     {
         _createdLevels = data.CreatedLevels;
@@ -34,6 +37,12 @@ public class CustomLevelManager : PersistentSingleton<CustomLevelManager>, ISave
     {
         _createdLevels.Remove(data);
         MessageManager.SendMessage(new Message(GameMessageType.OnLevelRemoved));
+    }
+
+    public bool ToggleEngine()
+    {
+        _currentLevelData.UseEngine = !_currentLevelData.UseEngine;
+        return _currentLevelData.UseEngine;
     }
 
 }

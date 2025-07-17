@@ -25,6 +25,13 @@ public class CustomLevelPanel : MonoBehaviour
     }
     private void AddButtonListener()
     {
+        _levelButton.onClick.AddListener(() =>
+        {
+            CustomLevelManager.Instance.CurrentLevelData = _customLevelData;
+            CustomLevelManager.Instance.LevelIndex = _levelIndex;
+            GameManager.Instance.PreviousSceneName = GameConstant.CUSTOM_LEVEL_SCENE;
+            SceneManager.LoadSceneAsync(GameConstant.GAMEPLAY_SCENE);
+        });
         _removeButton.onClick.AddListener(() =>
         {
             CustomLevelManager.Instance.RemoveLevel(_customLevelData);
@@ -34,6 +41,8 @@ public class CustomLevelPanel : MonoBehaviour
         _updateButton.onClick.AddListener(() =>
         {
             CustomLevelManager.Instance.CurrentLevelData = _customLevelData;
+            CustomLevelManager.Instance.LevelIndex = _levelIndex;
+            GameManager.Instance.PreviousSceneName = GameConstant.CUSTOM_LEVEL_SCENE;
             SceneManager.LoadSceneAsync(GameConstant.LEVEL_EDITOR_SCENE);
         });
     }

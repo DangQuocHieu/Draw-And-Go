@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomLevelLoader : PersistentSingleton<CustomLevelLoader>
 {
@@ -31,6 +32,12 @@ public class CustomLevelLoader : PersistentSingleton<CustomLevelLoader>
 
     public void SetUpCustomLevel()
     {
+        Dictionary<Vector2, GameObject> objectInstantiated = null;
+        if (LevelEditorManager.Instance != null)
+        {
+            objectInstantiated = LevelEditorManager.Instance.ObjectInstantiatedDictionary;
+            objectInstantiated.Clear();
+        }
         CustomLevelData data = CustomLevelManager.Instance.CurrentLevelData;
         if (data != null)
         {
@@ -40,12 +47,18 @@ public class CustomLevelLoader : PersistentSingleton<CustomLevelLoader>
             {
                 if (_placeableObjectDictionary.TryGetValue(item.ObjectKey, out var go))
                 {
-                    Instantiate(go, item.Position, Quaternion.identity, _levelEnvironment);
+                    GameObject instantiatedObject = Instantiate(go, item.Position, Quaternion.identity, _levelEnvironment);
+                    instantiatedObject.AddComponent<PlaceableObject>().ObjectKey = item.ObjectKey;
+                    if (objectInstantiated != null)
+                    {
+                        objectInstantiated.Add(item.Position, instantiatedObject);
+                    }
                 }
             }
             CarObject = Instantiate(_carPrefab, data.CarPosition, Quaternion.identity, _levelEnvironment);
             EndPointObject = Instantiate(_endPointPrefab, data.EndPointPosition, Quaternion.identity, _levelEnvironment);
+            MessageManager.SendMessage(new Message(GameMessageType.OnCustomLevelSetUp, new object[] { data }));
         }
-    }
+    }   
 
 }

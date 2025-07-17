@@ -14,5 +14,5 @@ public class CustomLevelData
     public List<LevelObjectData> LevelObjectDatas = new List<LevelObjectData>();
     public Vector2 CarPosition = new Vector2(-6.5f, 0.5f);
     public Vector2 EndPointPosition = new Vector2(6.5f, 0.5f);
-    public bool EngineOn = true;
+    public bool UseEngine = true;
 }

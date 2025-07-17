@@ -40,7 +40,11 @@ public class LevelCompleteScreenHUD : MonoBehaviour
         });
         _homeButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
+            if (GameManager.Instance.CurrentMode == GameMode.Create)
+            {
+                SceneManager.LoadSceneAsync(GameConstant.CUSTOM_LEVEL_SCENE);
+            }
+            else SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
         });
         _nextButton.onClick.AddListener(() =>
         {
@@ -54,5 +58,13 @@ public class LevelCompleteScreenHUD : MonoBehaviour
         _restartButton.onClick.RemoveAllListeners();
         _homeButton.onClick.RemoveAllListeners();
         _nextButton.onClick.RemoveAllListeners();
+    }
+
+    public void OnCreateMode()
+    {
+        _starContainer.gameObject.SetActive(false);
+        _nextButton.gameObject.SetActive(false);
+        RectTransform restartButtonRect = _restartButton.GetComponent<RectTransform>();
+        restartButtonRect.anchoredPosition = new Vector2(0, restartButtonRect.anchoredPosition.y);
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     {
         MessageManager.AddSubscriber(GameMessageType.OnCarStarted, this);
         MessageManager.AddSubscriber(GameMessageType.OnLevelSetUp, this);
+        MessageManager.AddSubscriber(GameMessageType.OnCustomLevelSetUp, this);
 
     }
 
@@ -52,6 +54,7 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
     {
         MessageManager.RemoveSubscriber(GameMessageType.OnCarStarted, this);
         MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
+        MessageManager.RemoveSubscriber(GameMessageType.OnCustomLevelSetUp, this);
 
     }
 
@@ -92,6 +95,10 @@ public class CarMovement : MonoBehaviour, IMessageHandle, IStartable
                 break;
             case GameMessageType.OnCarStarted:
                 OnStart();
+                break;
+            case GameMessageType.OnCustomLevelSetUp:
+                var data = (CustomLevelData)message.data[0];
+                if (data.UseEngine) StartCoroutine(LandingCoroutine());
                 break;
         }
     }

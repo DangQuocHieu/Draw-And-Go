@@ -28,7 +28,8 @@ public class Line : MonoBehaviour
         {
             _lengthToAdd = Vector3.Distance(position, _lineRenderer.GetPosition(_lineRenderer.positionCount - 1));
             _lineLength += _lengthToAdd;
-            DrawManager.Instance.UpdateTotalLength(_lengthToAdd);
+            DrawManager.Instance.UpdateCurrentLength(_lengthToAdd);
+            DrawManager.Instance.UpdateRemaining(_lengthToAdd);
         }
         ++_lineRenderer.positionCount;
         _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, position);

@@ -17,11 +17,8 @@ public class DrawManager : Singleton<DrawManager>, IMessageHandle
     private float _remaining;
     public float Remaining => _remaining;
 
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    [SerializeField] private float _currentLength;
+    public float CurrentLength => _currentLength;
 
     void OnEnable()
     {
@@ -71,13 +68,20 @@ public class DrawManager : Singleton<DrawManager>, IMessageHandle
         }
         Line line = _lineStack.Pop();
         _remaining += line.LineLength;
+        _currentLength -= line.LineLength;
+        if (_currentLength < 0) _currentLength = 0;
         _remaining = Mathf.Min(_remaining, _maxLength);
         Destroy(line.gameObject);
     }
 
-    public void UpdateTotalLength(float lengthToAdd)
+    public void UpdateRemaining(float lengthToAdd)
     {
         _remaining -= lengthToAdd;
+    }
+
+    public void UpdateCurrentLength(float lengthToAdd)
+    {
+        _currentLength += lengthToAdd;
     }
 
     public float CalculateDrawRate()

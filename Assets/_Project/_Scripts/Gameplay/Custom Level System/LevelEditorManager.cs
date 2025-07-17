@@ -19,6 +19,7 @@ public class LevelEditorManager : Singleton<LevelEditorManager>
     private LevelEditorTool _previousTool = LevelEditorTool.DrawTool;
 
     private Dictionary<Vector2, GameObject> _objectInstantiatedDictionary = new Dictionary<Vector2, GameObject>();
+    public Dictionary<Vector2, GameObject> ObjectInstantiatedDictionary => _objectInstantiatedDictionary;
 
     [Header("Input State")]
     [SerializeField] private bool _isPressed = false;
@@ -195,8 +196,12 @@ public class LevelEditorManager : Singleton<LevelEditorManager>
         {
             LevelObjectData objectData = new LevelObjectData();
             objectData.Position = placeableObject.Key;
-            objectData.ObjectKey = placeableObject.Value.GetComponent<PlaceableObject>().ObjectKey;
-            data.LevelObjectDatas.Add(objectData);
+            if (placeableObject.Value.TryGetComponent<PlaceableObject>(out var component))
+            {
+                objectData.ObjectKey = component.ObjectKey;
+                data.LevelObjectDatas.Add(objectData);
+            }
+
         }
         data.CarPosition = _carObject.transform.position;
         data.EndPointPosition = _endPointObject.transform.position;

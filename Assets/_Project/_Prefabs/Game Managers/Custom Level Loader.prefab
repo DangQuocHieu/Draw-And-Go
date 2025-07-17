@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9103448377216267305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6407349808513335736}
+  - component: {fileID: 6417207051943898468}
+  m_Layer: 0
+  m_Name: Custom Level Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6407349808513335736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103448377216267305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1150.4293, y: 930.36597, z: -3.0423448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6417207051943898468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103448377216267305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a76bd229541264380b6a5c026535b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _placeableObjectDatas:
+  - {fileID: 11400000, guid: 9e0491aa78f359144af71fb4c2a41eb3, type: 2}
+  - {fileID: 11400000, guid: ac059f18c17f86e48906745acd5d96c5, type: 2}
+  - {fileID: 11400000, guid: 318e347a9e64d1447a7f2e5056f5cbfb, type: 2}
+  - {fileID: 11400000, guid: 30bf0cddc8a78f8499dc1ba53e7d50ed, type: 2}
+  - {fileID: 11400000, guid: 6a53f67bbf42cc64588cd6a34b5e05ae, type: 2}
+  - {fileID: 11400000, guid: 85664db5b88ec41428f37c55fba77653, type: 2}
+  _carPrefab: {fileID: 8265901970161986495, guid: 0001bc930b0a7c043879f9f4ff6aa2c0, type: 3}
+  _endPointPrefab: {fileID: 4237943091710007629, guid: 73fb8e6aecd8a284cb02edc02d635eaf, type: 3}

@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -26,6 +23,8 @@ public class LevelEditorScreenHUD : MonoBehaviour
     [SerializeField] private Sprite _eraseOnSprite;
     [SerializeField] private Sprite _eraseOffSprite;
 
+    [SerializeField] private Sprite _engineOnSprite;
+    [SerializeField] private Sprite _engineOffSprite;
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI _currentToolText;
 
@@ -51,16 +50,24 @@ public class LevelEditorScreenHUD : MonoBehaviour
         {
             CustomLevelManager.Instance.SaveCurrentLevel();
         });
-        _engineButton.onClick.AddListener(() => { });
+        _engineButton.onClick.AddListener(() =>
+        {
+            OnEngineButtonClicked();
+
+        });
         _homeButton.onClick.AddListener(() =>
         {
+            CustomLevelManager.Instance.SaveCurrentLevel();
             SceneManager.LoadSceneAsync(GameConstant.CUSTOM_LEVEL_SCENE);
         });
         _eraseButton.onClick.AddListener(() =>
         {
             OnEraseButtonClicked();
         });
-        _playButton.onClick.AddListener(() => { });
+        _playButton.onClick.AddListener(() =>
+        {
+            OnPlayButtonClicked();
+        });
         _drawToolButton.onClick.AddListener(() =>
         {
             OnDrawToolButtonClicked();
@@ -122,6 +129,14 @@ public class LevelEditorScreenHUD : MonoBehaviour
         OnLevelEditorToolChange();
     }
 
+    private void OnPlayButtonClicked()
+    {
+        CustomLevelManager.Instance.SaveCurrentLevel();
+        GameManager.Instance.PreviousSceneName = GameConstant.LEVEL_EDITOR_SCENE;
+        SceneManager.LoadSceneAsync(GameConstant.GAMEPLAY_SCENE);
+    
+    }
+
     private void OnLevelEditorToolChange()
     {
         LevelEditorTool currentTool = LevelEditorManager.Instance.CurrentTool;
@@ -148,8 +163,10 @@ public class LevelEditorScreenHUD : MonoBehaviour
         }
     }
 
-    
-
-
-
+    private void OnEngineButtonClicked()
+    {
+        bool useEngine = CustomLevelManager.Instance.ToggleEngine();
+        Image engineImage = _engineButton.transform.GetChild(0).GetComponent<Image>();
+        engineImage.sprite = useEngine ? _engineOnSprite : _engineOffSprite;
+    }
 }

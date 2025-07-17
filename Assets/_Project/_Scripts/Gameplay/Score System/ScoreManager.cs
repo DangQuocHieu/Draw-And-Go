@@ -85,7 +85,7 @@ public class ScoreManager : Singleton<ScoreManager>, IMessageHandle
         switch (message.type)
         {
             case GameMessageType.OnCustomLevelSetUp:
-                gameObject.SetActive(false);
+                gameObject.SetActive(false);    
                 break;
         }
     }

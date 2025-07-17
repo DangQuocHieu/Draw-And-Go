@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarCollider : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class CarCollider : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag(GameConstant.END_POINT_TAG))
         {
-            MessageManager.SendMessage(new Message(GameMessageType.OnLevelCompleted));
-            Debug.Log("LEVEL COMPLETED");
+            if (GameManager.Instance.PreviousSceneName == GameConstant.LEVEL_EDITOR_SCENE)
+            {
+                SceneManager.LoadSceneAsync(GameConstant.LEVEL_EDITOR_SCENE);
+            }
+            else
+            {
+                MessageManager.SendMessage(new Message(GameMessageType.OnLevelCompleted));
+            }
         }
     }
 }

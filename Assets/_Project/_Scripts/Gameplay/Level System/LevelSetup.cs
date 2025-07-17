@@ -14,7 +14,6 @@ public class LevelSetup : MonoBehaviour
         if (currentMode == GameMode.Create)
         {
             CustomLevelLoader.Instance.SetUpCustomLevel();
-            MessageManager.SendMessage(new Message(GameMessageType.OnCustomLevelSetUp));
         }
         else
         {

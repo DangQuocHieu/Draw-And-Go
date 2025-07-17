@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
     [SerializeField] private Button _eraseButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _homeButton;
+    [SerializeField] private Button _helpButton;
     [SerializeField] private TextMeshProUGUI _totalLengthText;
     [SerializeField] private Slider _inkSlider;
 
@@ -20,22 +22,35 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
     {
         AddButtonListener();
         MessageManager.AddSubscriber(GameMessageType.OnLevelSetUp, this);
+        MessageManager.AddSubscriber(GameMessageType.OnCustomLevelSetUp, this);
     }
 
     void OnDisable()
     {
         RemoveButtonListener();
         MessageManager.RemoveSubscriber(GameMessageType.OnLevelSetUp, this);
+        MessageManager.RemoveSubscriber(GameMessageType.OnCustomLevelSetUp, this);
     }
     void Start()
     {
-        if(LevelManager.Instance != null)
-        _levelText.text = "Level " + (LevelManager.Instance.CurrentLevelIndex + 1).ToString();
-        
+        if (GameManager.Instance.CurrentMode == GameMode.Create)
+        {
+            _levelText.text = "Level " + (CustomLevelManager.Instance.LevelIndex + 1).ToString();
+        }
+        else
+        {
+            if (LevelManager.Instance != null)
+                _levelText.text = "Level " + (LevelManager.Instance.CurrentLevelIndex + 1).ToString();
+        }
+
     }
     void Update()
     {
         UpdateInkSlider();
+        if (DrawManager.Instance != null)
+        {
+            _totalLengthText.text = DrawManager.Instance.CurrentLength.ToString("F3");
+        }
     }
     private void AddButtonListener()
     {
@@ -53,8 +68,18 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
         });
         _homeButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
+            OnHomeButtonClicked();
         });
+    }
+
+    private void OnHomeButtonClicked()
+    {
+        GameMode currentMode = GameManager.Instance.CurrentMode;
+        if (currentMode == GameMode.Create)
+        {
+            SceneManager.LoadSceneAsync(GameManager.Instance.PreviousSceneName);
+        }
+        else SceneManager.LoadSceneAsync(GameConstant.HOME_SCENE);
     }
 
     private void RemoveButtonListener()
@@ -91,7 +116,24 @@ public class GamePlayScreenHUD : MonoBehaviour, IMessageHandle
                     _engineOffRect.gameObject.SetActive(true);
                 }
                 break;
+            case GameMessageType.OnCustomLevelSetUp:
+                CustomLevelData data = (CustomLevelData)message.data[0];
+                OnCustomLevelSetUp(data);
+                break;
+
         }
+    }
+
+    private void OnCustomLevelSetUp(CustomLevelData data)
+    {
+        if (!data.UseEngine)
+        {
+            _engineOffRect.gameObject.SetActive(true);
+        }
+        _inkSlider.gameObject.SetActive(false);
+        _helpButton.gameObject.SetActive(false);
+        _totalLengthText.gameObject.SetActive(true);
+
     }
 
     private void SetUpInkSlider(float maxValue)

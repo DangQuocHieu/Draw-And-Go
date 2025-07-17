@@ -20,6 +20,10 @@ public class UIGameplayScreenManager : MonoBehaviour, IMessageHandle
             case GameMessageType.OnLevelCompleted:
                 _gameplayScreen.gameObject.SetActive(false);
                 _levelCompleteScreen.gameObject.SetActive(true);
+                if (GameManager.Instance.CurrentMode == GameMode.Create)
+                {
+                    _levelCompleteScreen.OnCreateMode();
+                }
                 break;
         }
     }

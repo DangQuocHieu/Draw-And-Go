@@ -467,8 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cada42ba210e44b8f7798e67be6a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyRenderer: {fileID: 0}
-  _bodyCollider: {fileID: 0}
+  _bodyRenderer: {fileID: 7066593652149357345}
+  _bodyCollider: {fileID: 1344256041809802275}
   _backWheelRenderer: {fileID: 2335181060219739578}
   _frontWheelRenderer: {fileID: 7357423551937251766}
 --- !u!1001 &6185436765405581689
@@ -528,8 +528,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e5f3b0b9281f2e489068598112b9142, type: 3}
+--- !u!60 &1344256041809802275 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5147847780552336730, guid: 8e5f3b0b9281f2e489068598112b9142, type: 3}
+  m_PrefabInstance: {fileID: 6185436765405581689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5231096051786223788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2112051695173140949, guid: 8e5f3b0b9281f2e489068598112b9142, type: 3}
+  m_PrefabInstance: {fileID: 6185436765405581689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7066593652149357345 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4019041052613712472, guid: 8e5f3b0b9281f2e489068598112b9142, type: 3}
   m_PrefabInstance: {fileID: 6185436765405581689}
   m_PrefabAsset: {fileID: 0}

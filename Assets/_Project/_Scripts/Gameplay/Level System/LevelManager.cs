@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessageHandle
@@ -55,7 +56,11 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable, IMessa
     }
     public int GetLevelCount(GameMode gameMode)
     {
-        return _levelDictionary[_currentMode].LevelStats.Count;
+        if (_levelDictionary.ContainsKey(gameMode))
+        {
+            return _levelDictionary[gameMode].LevelStats.Count;
+        }
+        return -1;
     }
 
     public void SaveData(PlayerData data)
